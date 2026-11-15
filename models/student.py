@@ -1,13 +1,31 @@
-from sqlalchemy import Column, Integer, String
+
+from sqlalchemy import Integer, String
+from sqlalchemy.orm import Mapped, mapped_column
+
 from database.connection import Base
 
+
 class Student(Base):
-    __tablename__ = 'students'
+    __tablename__ = "students"
 
-    id = Column(Integer, primary_key=True, index=True,autoincrement=True)
-    name = Column(String(100), nullable=False)
-    age = Column(Integer, nullable=False)
-    grade = Column(String(20), nullable=False)
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True,
+        index=True,
+        autoincrement=True
+    )
 
-    # def __repr__(self):
-    #     return f"<Student(name={self.name}, age={self.age}, grade={self.grade})>"
+    name: Mapped[str] = mapped_column(
+        String(100),
+        nullable=False
+    )
+
+    age: Mapped[int] = mapped_column(
+        Integer,
+        nullable=False
+    )
+
+    grade: Mapped[str] = mapped_column(
+        String(20),
+        nullable=False
+    )

@@ -7,7 +7,7 @@ from sqlalchemy.engine import URL
 load_dotenv()
 
 #Database cofiguration
-Database_URL = URL.create(
+DATABASE_URL = URL.create(
     drivername="mysql+pymysql",
     username=os.getenv("DB_USER"),
     password=os.getenv("DB_PASSWORD"),
@@ -17,7 +17,7 @@ Database_URL = URL.create(
 )
 
 #Create databse emgine
-engine = create_engine(Database_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=True, pool_pre_ping=True)
 
 #Create session
 SessionLocal = sessionmaker(
